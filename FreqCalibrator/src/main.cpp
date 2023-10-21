@@ -1,18 +1,42 @@
 #include <Arduino.h>
+#include <SPI.h>
+#include <BLEPeripheral.h>
 
-// put function declarations here:
-int myFunction(int, int);
+BLEPeripheral ledPeripheral = BLEPeripheral();
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+BLEService ledService = BLEService("19b10000e8f2537e4f6cd104768a1214");
+BLECharCharacteristic ledCharacteristic = BLECharCharacteristic("19b10001e8f2537e4f6cd104768a1214", BLERead | BLEWrite);
+
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+
+  ledPeripheral.setAdvertisedServiceUuid(ledService.uuid());
+  ledPeripheral.addAttribute(ledService);
+  ledPeripheral.addAttribute(ledCharacteristic);
+  ledPeripheral.setLocalName("Nordic NRF52 DK");
+  ledPeripheral.begin();
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+void loop()
+{
+  BLECentral central = ledPeripheral.central();
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+  if (central)
+  {
+    while (central.connected())
+    {
+      if (ledCharacteristic.written())
+      {
+        if (ledCharacteristic.value())
+        {
+          digitalWrite(LED_BUILTIN, HIGH);
+        }
+        else
+        {
+          digitalWrite(LED_BUILTIN, LOW);
+        }
+      }
+    }
+  }
 }
