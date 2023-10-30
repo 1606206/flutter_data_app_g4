@@ -14,7 +14,7 @@ void setup()
   ledPeripheral.setAdvertisedServiceUuid(ledService.uuid());
   ledPeripheral.addAttribute(ledService);
   ledPeripheral.addAttribute(ledCharacteristic);
-  ledPeripheral.setLocalName("Nordic NRF52 DK");
+  ledPeripheral.setLocalName("Grupo 4");
   ledPeripheral.begin();
 }
 
