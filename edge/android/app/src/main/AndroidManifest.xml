@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
+    <!--
+    <uses-sdk android:minSdkVersion="21"/>
+    <uses-sdk tools:overrideLibrary= "package:flutter_" />
+    -->
     
     <application
         android:label="edge"
