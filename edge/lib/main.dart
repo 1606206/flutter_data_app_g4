@@ -1,5 +1,5 @@
-import 'package:edge/ble_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:edge/ble_controller.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -31,29 +32,17 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
+class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("BLE SCANNER"),
-        ),
-        body: GetBuilder<BleController>(builder: (BleController controller) {
+      appBar: AppBar(
+        title: Text("BLE SCANNER"),
+        centerTitle: true,
+      ),
+      body: GetBuilder<BleController>(
+        init: BleController(),
+        builder: (controller) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -65,17 +54,20 @@ class _MyHomePageState extends State<MyHomePage>
                     stream: controller.scanResults,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return ListView.builder(itemBuilder: (context, index) {
-                          final data = snapshot.data![index];
-                          return Card(
-                            elevation: 2,
-                            child: ListTile(
-                              title: Text(data.device.name),
-                              subtitle: Text(data.device.id.id),
-                              trailing: Text(data.rssi.toString()),
-                            ),
-                          );
-                        });
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              final data = snapshot.data![index];
+                              return Card(
+                                elevation: 2,
+                                child: ListTile(
+                                  title: Text(data.device.name),
+                                  subtitle: Text(data.device.id.id),
+                                  trailing: Text(data.rssi.toString()),
+                                ),
+                              );
+                            });
                       } else {
                         return Center(
                           child: Text("No Device Found"),
@@ -84,13 +76,15 @@ class _MyHomePageState extends State<MyHomePage>
                     }),
                 ElevatedButton(
                     onPressed: () => controller.scanDevices(),
-                    child: Text("SCAN")),
+                    child: Text("Scan")),
                 SizedBox(
                   height: 15,
                 ),
               ],
             ),
           );
-        }));
+        },
+      ),
+    );
   }
 }

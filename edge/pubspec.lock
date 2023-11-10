@@ -86,6 +86,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.0"
+  flutter_blue_plus:
+    dependency: "direct main"
+    description:
+      name: flutter_blue_plus
+      sha256: f6715d92f96de4867d11a22ba009afd3a7c584585287f935aa219df6af896984
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.28.7"
   flutter_lints:
     dependency: "direct dev"
     description:
