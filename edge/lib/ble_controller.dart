@@ -9,13 +9,65 @@ class BleController extends GetxController {
     if (blePermission.isDenied) {
       if (await Permission.bluetoothScan.request().isGranted) {
         if (await Permission.bluetoothConnect.request().isGranted) {
-          flutterBlue.startScan(timeout: Duration(seconds: 10));
-          flutterBlue.stopScan();
+          flutterBlue.scan(timeout: Duration(seconds: 10)).listen((result) {
+            if (result.device.name == "Grupo 4" &&
+                result.device.id.id == "F0:09:D9:4C:E9:18") {
+              // Aquí, puedes manejar el dispositivo encontrado.
+              print("Device Found: ${result.device.name}");
+              connectToDevice(result); // O cualquier otra acción que desees
+            }
+          });
         }
       }
     } else {
-      flutterBlue.startScan(timeout: Duration(seconds: 10));
-      flutterBlue.stopScan();
+      flutterBlue.scan(timeout: Duration(seconds: 10)).listen((result) {
+        if (result.device.name == "Grupo 4" &&
+            result.device.id.id == "F0:09:D9:4C:E9:18") {
+          // Aquí, puedes manejar el dispositivo encontrado.
+          print("Device Found: ${result.device.name}");
+          connectToDevice(result); // O cualquier otra acción que desees
+        }
+      });
+    }
+  }
+
+  //--------------------------CONECTARSE AL DISPOSITIVO-----------------------------
+  RxBool isConnected = false.obs;
+  BluetoothDevice? connectedDevice;
+  Future connectToDevice(ScanResult device) async {
+    print(
+        "Connecting to device: ${device.device.name} (${device.device.id.id})");
+
+    connectedDevice = device.device;
+
+    try {
+      await connectedDevice!.connect();
+      print("Connected successfully!");
+      isConnected.value = true;
+    } catch (e) {
+      print("Connection failed: $e");
+    }
+  }
+
+  void disconnectDevice() {
+    if (connectedDevice != null) {
+      connectedDevice!.disconnect();
+      isConnected.value = false;
+      connectedDevice = null;
+    }
+  }
+
+  //--------------------------ENVIAR DATOS AL DISPOSITIVO-----------------------------
+  Future<void> sendData(String data) async {
+    if (connectedDevice != null) {
+      List<BluetoothService> services =
+          await connectedDevice!.discoverServices();
+      services.forEach((service) {
+        service.characteristics.forEach((characteristic) {
+          // Aquí, puedes enviar datos utilizando characteristic.write()
+          // Asegúrate de verificar las propiedades de la característica (writeWithResponse o writeWithoutResponse).
+        });
+      });
     }
   }
 
