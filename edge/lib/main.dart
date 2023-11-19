@@ -47,78 +47,21 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 15,
-                ),
-                StreamBuilder<List<ScanResult>>(
-                  stream: controller.scanResults,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      List<ScanResult> devices = snapshot.data!;
-                      ScanResult? targetDevice;
-
-                      for (var device in devices) {
-                        if (device.device.name == "Grupo 4" &&
-                            device.device.id.id == "F0:09:D9:4C:E9:18") {
-                          targetDevice = device;
-                          break;
-                        }
-                      }
-
-                      if (targetDevice != null) {
-                        // Puedes realizar acciones específicas para el dispositivo encontrado.
-                        return Card(
-                          elevation: 2,
-                          child: ListTile(
-                            title: Text(targetDevice.device.name),
-                            subtitle: Text(targetDevice.device.id.id),
-                            trailing: Text(targetDevice.rssi.toString()),
-                          ),
-                        );
-                      } else {
-                        return Center(
-                          child: Text("Device not found"),
-                        );
-                      }
-                    } else {
-                      return Center(
-                        child: Text("No Device Found"),
-                      );
-                    }
-                  },
-                ),
                 ElevatedButton(
                   onPressed: () {
                     if (controller.isConnected.value) {
+                      print("Disconnecting...");
                       controller.disconnectDevice();
                     } else {
-                      controller.scanDevices();
+                      print("Connecting...");
+                      controller.connectToGrupo4();
                     }
                   },
-                  child: Text(controller.isConnected.value
-                      ? "Disconnect"
-                      : "Connect to Grupo 4"),
+                  child: Obx(() => Text(
+                      controller.isConnected.value ? "Disconnect" : "Connect")),
                 ),
-                SizedBox(
-                  height: 15,
-                ),
-
-                //---------------------------------LIDIAR CON CONCURRENCIA Y ESTDOS---------------------------
-                /*
-                FutureBuilder(
-                  future: controller.connectedDevice?.state,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.connectionState ==
-                        ConnectionState.done) {
-                      return Text('Device State: ${snapshot.data}');
-                    } else {
-                      return Text('Error: ${snapshot.error}');
-                    }
-                  },
-                ),
-                */
+                SizedBox(height: 15),
+                Obx(() => Text(controller.connectionStatus.value)),
               ],
             ),
           );
