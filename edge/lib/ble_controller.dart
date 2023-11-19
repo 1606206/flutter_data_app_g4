@@ -130,6 +130,25 @@ class BleController extends GetxController {
     }
   }
 
+  Future<void> readSpecificCharacteristic() async {
+    if (connectedDevice != null) {
+      List<BluetoothService> services =
+          await connectedDevice!.discoverServices();
+
+      services.forEach((service) {
+        service.characteristics.forEach((characteristic) async {
+          if (characteristic.uuid.toString() ==
+              "19b10001-e8f2-537e-4f6c-d104768a1214") {
+            List<int> value = await characteristic.read();
+            print("Received data: $value");
+            // Puedes procesar los datos recibidos aquí
+          } else
+            (print("Nothing"));
+        });
+      });
+    }
+  }
+
   void listenToCharacteristic(String characteristicUUID) async {
     if (connectedDevice != null) {
       List<BluetoothService> services =
