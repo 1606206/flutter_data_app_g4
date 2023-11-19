@@ -1,6 +1,7 @@
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'dart:async';
 
 class BleController extends GetxController {
   FlutterBlue flutterBlue = FlutterBlue.instance;
@@ -34,7 +35,6 @@ class BleController extends GetxController {
   }
 
   void connectToGrupo4() async {
-    // Escanear y conectar al dispositivo Grupo 4
     var result =
         await flutterBlue.scan(timeout: Duration(seconds: 10)).firstWhere(
               (result) =>
@@ -43,8 +43,8 @@ class BleController extends GetxController {
               orElse: () => null as dynamic,
             );
 
-    if (result != null) {
-      await connectToDevice(result as ScanResult);
+    if (result != null && result is ScanResult) {
+      await connectToDevice(result);
     } else {
       print("Device not found during scan.");
     }
@@ -81,18 +81,99 @@ class BleController extends GetxController {
     }
   }
 
-  //--------------------------ENVIAR DATOS AL DISPOSITIVO-----------------------------
-  Future<void> sendData(String data) async {
+  //--------------------------RECIBIR DATOS DEL DISPOSITIVO GRUPO 4-----------------------------
+  Future<void> discoverServices() async {
     if (connectedDevice != null) {
       List<BluetoothService> services =
           await connectedDevice!.discoverServices();
+
       services.forEach((service) {
+        print("Service UUID: ${service.uuid}");
+
         service.characteristics.forEach((characteristic) {
-          // Aquí, puedes enviar datos utilizando characteristic.write()
-          // Asegúrate de verificar las propiedades de la característica (writeWithResponse o writeWithoutResponse).
+          print("Characteristic UUID: ${characteristic.uuid}");
+          // Puedes imprimir otras propiedades de la característica si es necesario
         });
       });
     }
+  }
+
+  BluetoothCharacteristic? findCharacteristic(
+      List<BluetoothService> services, String characteristicUUID) {
+    BluetoothCharacteristic? targetCharacteristic;
+
+    services.forEach((service) {
+      service.characteristics.forEach((characteristic) {
+        if (characteristic.uuid.toString() == characteristicUUID) {
+          targetCharacteristic = characteristic;
+        }
+      });
+    });
+
+    return targetCharacteristic;
+  }
+
+  Future<void> readCharacteristic(String characteristicUUID) async {
+    if (connectedDevice != null) {
+      List<BluetoothService> services =
+          await connectedDevice!.discoverServices();
+
+      services.forEach((service) {
+        service.characteristics.forEach((characteristic) async {
+          if (characteristic.uuid.toString() == characteristicUUID) {
+            List<int> value = await characteristic.read();
+            print("Received data: $value");
+            // Puedes procesar los datos recibidos aquí
+          }
+        });
+      });
+    }
+  }
+
+  void listenToCharacteristic(String characteristicUUID) async {
+    if (connectedDevice != null) {
+      List<BluetoothService> services =
+          await connectedDevice!.discoverServices();
+
+      BluetoothCharacteristic? targetCharacteristic = findCharacteristic(
+        services,
+        characteristicUUID,
+      );
+
+      if (targetCharacteristic != null) {
+        await targetCharacteristic.setNotifyValue(true);
+
+        targetCharacteristic.value.listen((value) {
+          print("Received data: $value");
+          // Puedes procesar los datos recibidos aquí
+        });
+      } else {
+        print("Characteristic not found");
+      }
+    }
+  }
+
+  void startDataListening(String characteristicUUID) {
+    listenToCharacteristic(characteristicUUID);
+  }
+
+  //-------------------------------------------------SIMULACION DE RECIBIMIENTO DE DATOS CREANDO UN NUEVO STREAMCONTROLLER--------------------------
+  // Nuevo StreamController para emitir datos simulados
+  final StreamController<List<int>> _simulatedDataStream =
+      StreamController<List<int>>.broadcast();
+
+  // Método para simular el envío de datos
+  void simulateData() {
+    final List<int> simulatedData = [1, 2, 3, 4, 5]; // Datos simulados
+    _simulatedDataStream.add(simulatedData);
+  }
+
+  // Método para iniciar la escucha de datos simulados
+  void startSimulatedDataListening() {
+    _simulatedDataStream.stream.listen((data) {
+      print("Simulated data received: $data");
+      // Puedes procesar y almacenar los datos simulados según tus necesidades
+    });
   }
 
   Stream<List<ScanResult>> get scanResults => flutterBlue.scanResults;

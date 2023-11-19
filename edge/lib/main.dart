@@ -33,6 +33,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final String characteristicUUID = "tu_uuid_de_caracteristica_a_leer";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,13 +50,21 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (controller.isConnected.value) {
                       print("Disconnecting...");
                       controller.disconnectDevice();
                     } else {
                       print("Connecting...");
                       controller.connectToGrupo4();
+                      controller.simulateData(); // Simular datos aquí
+                      controller
+                          .startSimulatedDataListening(); // Iniciar la escucha de datos simulados
+                      await Future.delayed(Duration(
+                          seconds:
+                              1)); // Esperar un poco antes de iniciar la escucha de datos reales (puedes ajustar según sea necesario)
+                      controller.startDataListening(characteristicUUID);
+                      controller.discoverServices();
                     }
                   },
                   child: Obx(() => Text(
