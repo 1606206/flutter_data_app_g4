@@ -57,16 +57,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     } else {
                       print("Connecting...");
                       controller.connectToGrupo4();
-                      /* -----------------------------SIMULATION DATA---------------------------------
-                      controller.simulateData(); // Simular datos aquí
-                      controller
-                          .startSimulatedDataListening(); // Iniciar la escucha de datos simulados
-                      await Future.delayed(Duration(
-                          seconds:
-                              1)); // Esperar un poco antes de iniciar la escucha de datos reales (puedes ajustar según sea necesario)
-                      controller.startDataListening(characteristicUUID);
-                      */
-                      // Llamada a la función para leer la característica específica
                       await controller.readSpecificCharacteristic();
                     }
                   },
