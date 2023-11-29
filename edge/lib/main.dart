@@ -52,16 +52,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 ElevatedButton(
                   onPressed: () async {
                     if (controller.isConnected.value) {
-                      print("Disconnecting...");
-                      controller.disconnectDevice();
+                      print("Reading characteristic...");
+                      await controller.readCharacteristic();
                     } else {
                       print("Connecting...");
                       controller.connectToGrupo4();
-                      await controller.readSpecificCharacteristic();
                     }
                   },
-                  child: Obx(() => Text(
-                      controller.isConnected.value ? "Disconnect" : "Connect")),
+                  child: Obx(() => Text(controller.isConnected.value
+                      ? "Read Characteristic"
+                      : "Connect")),
                 ),
                 SizedBox(height: 15),
                 Obx(() => Text(controller.connectionStatus.value)),

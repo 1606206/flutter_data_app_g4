@@ -82,7 +82,25 @@ class BleController extends GetxController {
   }
 
   //--------------------------RECIBIR DATOS DEL DISPOSITIVO GRUPO 4-----------------------------
- 
+  final String characteristicUUID = "19b10001-e8f2-537e-4f6c-d104768a1214";
+  Future<void> readCharacteristic() async {
+    if (connectedDevice != null) {
+      List<BluetoothService> services =
+          await connectedDevice!.discoverServices();
+      for (BluetoothService service in services) {
+        for (BluetoothCharacteristic characteristic
+            in service.characteristics) {
+          if (characteristic.uuid.toString() == characteristicUUID) {
+            List<int> value = await characteristic.read();
+            String hexValue =
+                value.map((e) => e.toRadixString(16).padLeft(2, '0')).join(' ');
+            print("Read value from characteristic: $hexValue");
+            // Puedes realizar acciones adicionales con el valor leído aquí
+          }
+        }
+      }
+    }
+  }
 
   Stream<List<ScanResult>> get scanResults => flutterBlue.scanResults;
 }
