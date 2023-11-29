@@ -1,42 +1,43 @@
 #include <Arduino.h>
-#include <SPI.h>
 #include <BLEPeripheral.h>
 
-BLEPeripheral ledPeripheral = BLEPeripheral();
+BLEPeripheral blePeripheral;
 
-BLEService ledService = BLEService("19b10000e8f2537e4f6cd104768a1214");
-BLECharCharacteristic ledCharacteristic = BLECharCharacteristic("19b10001e8f2537e4f6cd104768a1214", BLERead | BLEWrite);
+BLEService ledService("19b10000e8f2537e4f6cd104768a1214");
+BLECharCharacteristic ledCharacteristic("19b10001e8f2537e4f6cd104768a1214", BLEWrite);
 
 void setup()
 {
+  Serial.begin(115200);
   pinMode(LED_BUILTIN, OUTPUT);
 
-  ledPeripheral.setAdvertisedServiceUuid(ledService.uuid());
-  ledPeripheral.addAttribute(ledService);
-  ledPeripheral.addAttribute(ledCharacteristic);
-  ledPeripheral.setLocalName("Grupo 4");
-  ledPeripheral.begin();
+  blePeripheral.setLocalName("Grupo 4");
+  blePeripheral.setAdvertisedServiceUuid(ledService.uuid());
+  blePeripheral.addAttribute(ledService);
+  blePeripheral.addAttribute(ledCharacteristic);
+  blePeripheral.begin();
 }
 
 void loop()
 {
-  BLECentral central = ledPeripheral.central();
+  BLECentral central = blePeripheral.central();
 
   if (central)
   {
+    Serial.print("Connected to central: ");
+    Serial.println(central.address());
+
     while (central.connected())
     {
-      if (ledCharacteristic.written())
-      {
-        if (ledCharacteristic.value())
-        {
-          digitalWrite(LED_BUILTIN, HIGH);
-        }
-        else
-        {
-          digitalWrite(LED_BUILTIN, LOW);
-        }
-      }
+      // Envía el número 42 constantemente
+      int numberToSend = 42;
+      ledCharacteristic.setValue(numberToSend);
+
+      // Puedes agregar un pequeño retraso si es necesario
+      delay(1000); // Espera 1 segundo antes de enviar el siguiente valor
     }
+
+    Serial.print("Disconnected from central: ");
+    Serial.println(central.address());
   }
 }
