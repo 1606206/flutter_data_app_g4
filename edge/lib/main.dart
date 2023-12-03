@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:edge/ble_controller.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
+import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String characteristicUUID = "tu_uuid_de_caracteristica_a_leer";
+  Uuid service_uuid = Uuid.parse("19b10000-e8f2-537e-4f6c-d104768a1214");
+  Uuid characteristicUUID = Uuid.parse("19b10001-e8f2-537e-4f6c-d104768a1214");
+  FlutterReactiveBle flutter_reactive = FlutterReactiveBle();
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () async {
                     if (controller.isConnected.value) {
                       print("Reading characteristic...");
-                      await controller.readCharacteristic();
+                      //await controller.readCharacteristic();
+                      final characteristic = QualifiedCharacteristic(
+                        serviceId: service_uuid,
+                        characteristicId: characteristicUUID,
+                        deviceId: "F0:09:D9:4C:E9:18",
+                      );
+                      final characteristic_response = await flutter_reactive
+                          .readCharacteristic(characteristic);
+                      print(characteristic_response);
                     } else {
                       print("Connecting...");
                       controller.connectToGrupo4();

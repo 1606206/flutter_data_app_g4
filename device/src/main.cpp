@@ -4,7 +4,7 @@
 BLEPeripheral blePeripheral;
 
 BLEService ledService("19b10000e8f2537e4f6cd104768a1214");
-BLECharCharacteristic ledCharacteristic("19b10001e8f2537e4f6cd104768a1214", BLEWrite);
+BLECharCharacteristic ledCharacteristic("19b10001e8f2537e4f6cd104768a1214", BLERead | BLEWrite);
 
 void setup()
 {
@@ -29,6 +29,7 @@ void loop()
 
     while (central.connected())
     {
+      Serial.print("Hola ");
       // Envía el número 42 constantemente
       int numberToSend = 42;
       ledCharacteristic.setValue(numberToSend);
