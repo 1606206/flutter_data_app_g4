@@ -1,41 +1,100 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart'; // Necesario para cargar datos desde un archivo JSON
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart'; // Importa Firebase
-import 'package:path_provider/path_provider.dart';
-import 'package:flutter/widgets.dart';
+// Función para actualizar el campo "numero" en Firestore
+Future<void> actualizarNumero(String documentId, int nuevoNumero) async {
+  //Firebase.initializeApp();
+  try {
+    // Referencia al documento específico que deseas actualizar
+    DocumentReference docRef =
+        FirebaseFirestore.instance.collection('prueba').doc(documentId);
 
-Future<void> sendDataToFirestore() async {
-  WidgetsFlutterBinding
-      .ensureInitialized(); // Asegúrate de que Flutter esté inicializado
+    // Actualizar el campo "numero" en el documento
+    await docRef.update({'numero': nuevoNumero});
 
-  // Inicializar Firebase
-  await Firebase.initializeApp();
-
-  // Obtener la ruta del archivo BBDD.json
-  String filePath = await _getFilePath('BBDD.json');
-
-  // Leer el contenido del archivo JSON
-  String jsonData = await File(filePath).readAsString();
-  List<dynamic> datos = json.decode(jsonData);
-
-  // Obtener referencia de la colección "actividad" en Firestore
-  CollectionReference actividadCollection =
-      FirebaseFirestore.instance.collection('actividad');
-
-  // Recorrer los datos y agregar a Firestore con un ID personalizado
-  datos.forEach((dato) async {
-    // Crear un documento con ID personalizado
-    await actividadCollection
-        .doc('${dato["fecha"]}_${dato["clientes"]}')
-        .set(dato);
-  });
+    print('Campo "numero" actualizado correctamente en Firestore.');
+  } catch (error) {
+    print('Error al actualizar el campo "numero" en Firestore: $error');
+    // Puedes manejar el error según tus necesidades
+  }
 }
 
-// Función para obtener la ruta del archivo en el directorio de documentos
-Future<String> _getFilePath(String fileName) async {
-  Directory appDocDir = await getApplicationDocumentsDirectory();
-  String appDocPath = appDocDir.path;
-  return '$appDocPath/$fileName';
+// Uso de la función para actualizar el campo "numero" en el documento con ID "jtEGRGkx14RmAAb7NyYT"
+
+Future<void> agregarNumeroAleatorio(int nuevoNumero) async {
+  try {
+    // Referencia a la colección 'prueba'
+    CollectionReference collectionRef =
+        FirebaseFirestore.instance.collection('prueba');
+
+    // Generar un nuevo ID aleatorio para el documento
+    String nuevoId = collectionRef.doc().id;
+
+    // Crear el nuevo documento con el número asociado
+    await collectionRef.doc(nuevoId).set({'numero': nuevoNumero});
+
+    print('Nuevo documento creado con éxito en Firestore. ID: $nuevoId');
+  } catch (error) {
+    print('Error al agregar el número en Firestore: $error');
+    // Puedes manejar el error según tus necesidades
+  }
+}
+
+Future<void> actualizarClientesPorFecha(
+    String fecha, int nuevosClientes) async {
+  try {
+    // Referencia a la colección 'actividad'
+    CollectionReference actividadCollection =
+        FirebaseFirestore.instance.collection('actividad');
+
+    // Consultar si ya existe un documento con la fecha
+    QuerySnapshot querySnapshot =
+        await actividadCollection.where('fecha', isEqualTo: fecha).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      // Si el documento ya existe, actualiza el número de clientes
+      DocumentSnapshot document = querySnapshot.docs.first;
+      int clientesActuales = document['clientes'];
+      int totalClientes = clientesActuales + nuevosClientes;
+
+      // Actualiza el documento existente
+      await document.reference.update({'clientes': totalClientes});
+      print('Número de clientes actualizado para la fecha $fecha.');
+    } else {
+      // Si no existe, crea un nuevo documento
+      await actividadCollection
+          .add({'fecha': fecha, 'clientes': nuevosClientes});
+      print(
+          'Nuevo documento creado para la fecha $fecha con $nuevosClientes clientes.');
+    }
+  } catch (error) {
+    print('Error al actualizar los clientes en Firestore: $error');
+    // Puedes manejar el error según tus necesidades
+  }
+}
+
+// Función para cargar datos desde un archivo JSON
+Future<void> cargarDatosDesdeJson() async {
+  try {
+    // Construct the file path
+    String filePath = 'BBDD.json';
+
+    // Load data from the BBDD.json file
+    String jsonString = await File(filePath).readAsString();
+    List<dynamic> datos = jsonDecode(jsonString);
+
+    // Iteratively update Firestore for each data set
+    for (var dato in datos) {
+      String fecha = dato['fecha'];
+      int nuevosClientes = dato['clientes'];
+
+      // Call the function to update or create documents in Firestore
+      await actualizarClientesPorFecha(fecha, nuevosClientes);
+    }
+  } catch (error) {
+    print('Error al cargar datos desde JSON: $error');
+    // Handle the error as needed
+  }
 }
