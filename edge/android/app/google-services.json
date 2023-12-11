@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "505236805756",
+    "project_id": "flutter-data-app-g4",
+    "storage_bucket": "flutter-data-app-g4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505236805756:android:af6b2d0e95f0ea96da11f9",
+        "android_client_info": {
+          "package_name": "com.example.edge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvvZ5sCAOBEIbf8Jjy_hMEqM5p_OqIQTA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,11 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:edge/ble_controller.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:get/get.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
+import "bbdd_repository.dart";
+import 'package:firebase_core/firebase_core.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp().then((_) {
+    runApp(MyApp());
+    /*
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    runApp(MyApp());
+    */
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -65,6 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       final characteristic_response = await flutter_reactive
                           .readCharacteristic(characteristic);
                       print(characteristic_response);
+                      sendDataToFirestore(); //enviar datos a cloud
                     } else {
                       print("Connecting...");
                       controller.connectToGrupo4();

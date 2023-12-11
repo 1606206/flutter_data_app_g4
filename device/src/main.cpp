@@ -29,7 +29,6 @@ void loop()
 
     while (central.connected())
     {
-      Serial.print("Hola ");
       // Envía el número 42 constantemente
       int numberToSend = 42;
       ledCharacteristic.setValue(numberToSend);
