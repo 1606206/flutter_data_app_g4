@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart'; // Necesario para cargar datos desde un archivo JSON
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/services.dart' show rootBundle;
 
 // Función para actualizar el campo "numero" en Firestore
 Future<void> actualizarNumero(String documentId, int nuevoNumero) async {
@@ -78,11 +79,8 @@ Future<void> actualizarClientesPorFecha(
 // Función para cargar datos desde un archivo JSON
 Future<void> cargarDatosDesdeJson() async {
   try {
-    // Construct the file path
-    String filePath = 'BBDD.json';
-
-    // Load data from the BBDD.json file
-    String jsonString = await File(filePath).readAsString();
+    // Load data from the BBDD.json file using rootBundle
+    String jsonString = await rootBundle.loadString('assets/BBDD.json');
     List<dynamic> datos = jsonDecode(jsonString);
 
     // Iteratively update Firestore for each data set
