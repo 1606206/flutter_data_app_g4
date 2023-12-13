@@ -77,7 +77,7 @@ Future<void> actualizarClientesPorFecha(
 }
 
 // Función para cargar datos desde un archivo JSON
-Future<void> cargarDatosDesdeJson() async {
+Future<void> cargarDatosDesdeJsonAbaseDeDatos() async {
   try {
     // Load data from the BBDD.json file using rootBundle
     String jsonString = await rootBundle.loadString('assets/BBDD.json');
