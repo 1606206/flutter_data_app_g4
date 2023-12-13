@@ -8,6 +8,7 @@ import 'firebase_options.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:intl/intl.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -212,15 +213,17 @@ class _MyHomePageState extends State<MyHomePage> {
     DateTime formattedDate = DateTime(date.year, date.month, date.day);
 
     int clients = _events[formattedDate] ?? 0;
-    print("Fecha seleccionada en _showClientCountDialog: $formattedDate");
-    print("Clientes asociados a la fecha en _showClientCountDialog: $clients");
+
+    // Utilizar DateFormat para formatear la fecha en el formato deseado
+    String formattedDateString = DateFormat("MMMM d").format(formattedDate);
 
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text("Número de clientes"),
-          content: Text("En la fecha $formattedDate hay $clients clientes."),
+          content: Text(
+              "On the date of $formattedDateString there has been $clients clients."),
           actions: [
             ElevatedButton(
               onPressed: () {
