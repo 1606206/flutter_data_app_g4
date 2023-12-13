@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("BLE DEVICE"),
+        title: Text("BLE CALENDAR"),
         centerTitle: true,
       ),
       body: GetBuilder<BleController>(
@@ -221,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text("Número de clientes"),
+          title: Text("Number of Clients"),
           content: Text(
               "On the date of $formattedDateString there has been $clients clients."),
           actions: [
@@ -229,7 +229,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Cerrar"),
+              child: Text("Close"),
             ),
           ],
         );
