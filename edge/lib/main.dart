@@ -157,17 +157,22 @@ class _MyHomePageState extends State<MyHomePage> {
                           defaultBuilder: (context, date, _) {
                             Color color = _getColorForDate(
                                 DateTime(date.year, date.month, date.day));
-                            return Container(
-                              margin: const EdgeInsets.all(4.0),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: color,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  date.day.toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
+                            return GestureDetector(
+                              onTap: () {
+                                _showClientCountDialog(date);
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(4.0),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: color,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    date.day.toString(),
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -188,6 +193,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Color _getColorForDate(DateTime date) {
     int clients = _events[date] ?? 0;
 
+    print("Fecha evaluada en _getColorForDate: $date");
+    print("Clientes asociados a la fecha en _getColorForDate: $clients");
+
     if (clients > 60) {
       return const Color.fromARGB(255, 163, 34, 25);
     } else if (clients >= 30 && clients <= 60) {
@@ -197,5 +205,32 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       return Colors.grey;
     }
+  }
+
+  void _showClientCountDialog(DateTime date) {
+    // Formatear la fecha seleccionada para coincidir con el formato en _events
+    DateTime formattedDate = DateTime(date.year, date.month, date.day);
+
+    int clients = _events[formattedDate] ?? 0;
+    print("Fecha seleccionada en _showClientCountDialog: $formattedDate");
+    print("Clientes asociados a la fecha en _showClientCountDialog: $clients");
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Número de clientes"),
+          content: Text("En la fecha $formattedDate hay $clients clientes."),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Cerrar"),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
