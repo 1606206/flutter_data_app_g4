@@ -33,7 +33,6 @@ void loop()
       int numberToSend = 42;
       ledCharacteristic.setValue(numberToSend);
 
-      // Puedes agregar un pequeño retraso si es necesario
       delay(1000); // Espera 1 segundo antes de enviar el siguiente valor
     }
 

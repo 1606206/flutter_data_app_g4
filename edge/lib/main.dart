@@ -81,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     } catch (error) {
       print('Error al cargar datos desde JSON: $error');
-      // Handle the error as needed
     }
   }
 
@@ -107,6 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () async {
                       if (controller.isConnected.value) {
                         print("Reading characteristic...");
+                        await reiniciarDatos();
                         // await controller.readCharacteristic();
                         final characteristic = QualifiedCharacteristic(
                           serviceId: service_uuid,
@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         final characteristic_response = await flutter_reactive
                             .readCharacteristic(characteristic);
                         print(characteristic_response);
-                        await cargarDatosDesdeJsonAbaseDeDatos();
+
                         // Mostrar el calendario después de leer la característica
                         setState(() {
                           showCalendar = true;
