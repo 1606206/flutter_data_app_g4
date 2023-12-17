@@ -4,45 +4,6 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart' show rootBundle;
 
-// Función para actualizar el campo "numero" en Firestore
-Future<void> actualizarNumero(String documentId, int nuevoNumero) async {
-  //Firebase.initializeApp();
-  try {
-    // Referencia al documento específico que deseas actualizar
-    DocumentReference docRef =
-        FirebaseFirestore.instance.collection('prueba').doc(documentId);
-
-    // Actualizar el campo "numero" en el documento
-    await docRef.update({'numero': nuevoNumero});
-
-    print('Campo "numero" actualizado correctamente en Firestore.');
-  } catch (error) {
-    print('Error al actualizar el campo "numero" en Firestore: $error');
-    // Puedes manejar el error según tus necesidades
-  }
-}
-
-// Uso de la función para actualizar el campo "numero" en el documento con ID "jtEGRGkx14RmAAb7NyYT"
-
-Future<void> agregarNumeroAleatorio(int nuevoNumero) async {
-  try {
-    // Referencia a la colección 'prueba'
-    CollectionReference collectionRef =
-        FirebaseFirestore.instance.collection('prueba');
-
-    // Generar un nuevo ID aleatorio para el documento
-    String nuevoId = collectionRef.doc().id;
-
-    // Crear el nuevo documento con el número asociado
-    await collectionRef.doc(nuevoId).set({'numero': nuevoNumero});
-
-    print('Nuevo documento creado con éxito en Firestore. ID: $nuevoId');
-  } catch (error) {
-    print('Error al agregar el número en Firestore: $error');
-    // Puedes manejar el error según tus necesidades
-  }
-}
-
 Future<void> actualizarClientesPorFecha(
     String fecha, int nuevosClientes) async {
   try {

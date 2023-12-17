@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         final characteristic_response = await flutter_reactive
                             .readCharacteristic(characteristic);
                         print(characteristic_response);
-
+                        await cargarDatosDesdeJsonAbaseDeDatos();
                         // Mostrar el calendario después de leer la característica
                         setState(() {
                           showCalendar = true;

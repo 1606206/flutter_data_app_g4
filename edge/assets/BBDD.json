@@ -1,123 +1,43 @@
 [
   {
-    "fecha": "2023-08-29",
-    "clientes": 37
-  },
-  {
-    "fecha": "2023-08-30",
-    "clientes": 38
-  },
-  {
-    "fecha": "2023-08-31",
-    "clientes": 76
-  },
-  {
-    "fecha": "2023-09-01",
-    "clientes": 54
-  },
-  {
-    "fecha": "2023-09-02",
-    "clientes": 51
-  },
-  {
-    "fecha": "2023-09-03",
-    "clientes": 71
-  },
-  {
-    "fecha": "2023-09-04",
-    "clientes": 77
-  },
-  {
-    "fecha": "2023-09-05",
-    "clientes": 2
-  },
-  {
-    "fecha": "2023-09-06",
-    "clientes": 61
-  },
-  {
-    "fecha": "2023-09-07",
-    "clientes": 25
-  },
-  {
-    "fecha": "2023-09-08",
-    "clientes": 14
-  },
-  {
-    "fecha": "2023-09-09",
-    "clientes": 0
-  },
-  {
-    "fecha": "2023-09-10",
-    "clientes": 67
-  },
-  {
-    "fecha": "2023-09-11",
-    "clientes": 40
-  },
-  {
-    "fecha": "2023-09-12",
-    "clientes": 50
-  },
-  {
-    "fecha": "2023-09-13",
-    "clientes": 84
-  },
-  {
-    "fecha": "2023-09-14",
-    "clientes": 35
-  },
-  {
-    "fecha": "2023-09-15",
-    "clientes": 93
-  },
-  {
-    "fecha": "2023-09-16",
-    "clientes": 22
-  },
-  {
-    "fecha": "2023-09-17",
-    "clientes": 57
-  },
-  {
     "fecha": "2023-09-18",
-    "clientes": 76
+    "clientes": 48
   },
   {
     "fecha": "2023-09-19",
-    "clientes": 88
+    "clientes": 58
   },
   {
     "fecha": "2023-09-20",
-    "clientes": 88
+    "clientes": 78
   },
   {
     "fecha": "2023-09-21",
-    "clientes": 57
+    "clientes": 43
   },
   {
     "fecha": "2023-09-22",
-    "clientes": 23
-  },
-  {
-    "fecha": "2023-09-23",
     "clientes": 79
   },
   {
+    "fecha": "2023-09-23",
+    "clientes": 69
+  },
+  {
     "fecha": "2023-09-24",
-    "clientes": 83
+    "clientes": 26
   },
   {
     "fecha": "2023-09-25",
-    "clientes": 20
+    "clientes": 8
   },
   {
     "fecha": "2023-09-26",
-    "clientes": 49
+    "clientes": 0
   },
   {
     "fecha": "2023-09-27",
-    "clientes": 57
+    "clientes": 93
   },
   {
     "fecha": "2023-09-28",
@@ -125,358 +45,438 @@
   },
   {
     "fecha": "2023-09-29",
-    "clientes": 91
+    "clientes": 43
   },
   {
     "fecha": "2023-09-30",
-    "clientes": 2
+    "clientes": 40
   },
   {
     "fecha": "2023-10-01",
-    "clientes": 72
-  },
-  {
-    "fecha": "2023-10-02",
-    "clientes": 52
-  },
-  {
-    "fecha": "2023-10-03",
-    "clientes": 34
-  },
-  {
-    "fecha": "2023-10-04",
-    "clientes": 22
-  },
-  {
-    "fecha": "2023-10-05",
-    "clientes": 37
-  },
-  {
-    "fecha": "2023-10-06",
-    "clientes": 19
-  },
-  {
-    "fecha": "2023-10-07",
-    "clientes": 9
-  },
-  {
-    "fecha": "2023-10-08",
-    "clientes": 50
-  },
-  {
-    "fecha": "2023-10-09",
-    "clientes": 50
-  },
-  {
-    "fecha": "2023-10-10",
-    "clientes": 30
-  },
-  {
-    "fecha": "2023-10-11",
-    "clientes": 69
-  },
-  {
-    "fecha": "2023-10-12",
-    "clientes": 91
-  },
-  {
-    "fecha": "2023-10-13",
-    "clientes": 19
-  },
-  {
-    "fecha": "2023-10-14",
-    "clientes": 56
-  },
-  {
-    "fecha": "2023-10-15",
-    "clientes": 44
-  },
-  {
-    "fecha": "2023-10-16",
-    "clientes": 7
-  },
-  {
-    "fecha": "2023-10-17",
-    "clientes": 82
-  },
-  {
-    "fecha": "2023-10-18",
-    "clientes": 51
-  },
-  {
-    "fecha": "2023-10-19",
-    "clientes": 54
-  },
-  {
-    "fecha": "2023-10-20",
-    "clientes": 25
-  },
-  {
-    "fecha": "2023-10-21",
-    "clientes": 94
-  },
-  {
-    "fecha": "2023-10-22",
-    "clientes": 79
-  },
-  {
-    "fecha": "2023-10-23",
-    "clientes": 98
-  },
-  {
-    "fecha": "2023-10-24",
-    "clientes": 27
-  },
-  {
-    "fecha": "2023-10-25",
-    "clientes": 98
-  },
-  {
-    "fecha": "2023-10-26",
-    "clientes": 22
-  },
-  {
-    "fecha": "2023-10-27",
-    "clientes": 60
-  },
-  {
-    "fecha": "2023-10-28",
-    "clientes": 73
-  },
-  {
-    "fecha": "2023-10-29",
-    "clientes": 29
-  },
-  {
-    "fecha": "2023-10-30",
-    "clientes": 66
-  },
-  {
-    "fecha": "2023-10-31",
-    "clientes": 0
-  },
-  {
-    "fecha": "2023-11-01",
-    "clientes": 19
-  },
-  {
-    "fecha": "2023-11-02",
-    "clientes": 30
-  },
-  {
-    "fecha": "2023-11-03",
-    "clientes": 19
-  },
-  {
-    "fecha": "2023-11-04",
-    "clientes": 13
-  },
-  {
-    "fecha": "2023-11-05",
-    "clientes": 35
-  },
-  {
-    "fecha": "2023-11-06",
-    "clientes": 54
-  },
-  {
-    "fecha": "2023-11-07",
-    "clientes": 33
-  },
-  {
-    "fecha": "2023-11-08",
-    "clientes": 0
-  },
-  {
-    "fecha": "2023-11-09",
-    "clientes": 58
-  },
-  {
-    "fecha": "2023-11-10",
-    "clientes": 77
-  },
-  {
-    "fecha": "2023-11-11",
-    "clientes": 7
-  },
-  {
-    "fecha": "2023-11-12",
-    "clientes": 34
-  },
-  {
-    "fecha": "2023-11-13",
-    "clientes": 89
-  },
-  {
-    "fecha": "2023-11-14",
-    "clientes": 61
-  },
-  {
-    "fecha": "2023-11-15",
-    "clientes": 7
-  },
-  {
-    "fecha": "2023-11-16",
-    "clientes": 57
-  },
-  {
-    "fecha": "2023-11-17",
-    "clientes": 53
-  },
-  {
-    "fecha": "2023-11-18",
-    "clientes": 72
-  },
-  {
-    "fecha": "2023-11-19",
-    "clientes": 88
-  },
-  {
-    "fecha": "2023-11-20",
-    "clientes": 78
-  },
-  {
-    "fecha": "2023-11-21",
-    "clientes": 32
-  },
-  {
-    "fecha": "2023-11-22",
-    "clientes": 29
-  },
-  {
-    "fecha": "2023-11-23",
-    "clientes": 49
-  },
-  {
-    "fecha": "2023-11-24",
-    "clientes": 37
-  },
-  {
-    "fecha": "2023-11-25",
-    "clientes": 42
-  },
-  {
-    "fecha": "2023-11-26",
-    "clientes": 65
-  },
-  {
-    "fecha": "2023-11-27",
-    "clientes": 56
-  },
-  {
-    "fecha": "2023-11-28",
-    "clientes": 38
-  },
-  {
-    "fecha": "2023-11-29",
-    "clientes": 45
-  },
-  {
-    "fecha": "2023-11-30",
     "clientes": 47
   },
   {
-    "fecha": "2023-12-01",
+    "fecha": "2023-10-02",
+    "clientes": 78
+  },
+  {
+    "fecha": "2023-10-03",
+    "clientes": 94
+  },
+  {
+    "fecha": "2023-10-04",
+    "clientes": 20
+  },
+  {
+    "fecha": "2023-10-05",
+    "clientes": 23
+  },
+  {
+    "fecha": "2023-10-06",
+    "clientes": 62
+  },
+  {
+    "fecha": "2023-10-07",
+    "clientes": 5
+  },
+  {
+    "fecha": "2023-10-08",
+    "clientes": 28
+  },
+  {
+    "fecha": "2023-10-09",
+    "clientes": 29
+  },
+  {
+    "fecha": "2023-10-10",
+    "clientes": 92
+  },
+  {
+    "fecha": "2023-10-11",
+    "clientes": 4
+  },
+  {
+    "fecha": "2023-10-12",
+    "clientes": 50
+  },
+  {
+    "fecha": "2023-10-13",
+    "clientes": 34
+  },
+  {
+    "fecha": "2023-10-14",
     "clientes": 42
   },
   {
-    "fecha": "2023-12-02",
-    "clientes": 37
+    "fecha": "2023-10-15",
+    "clientes": 0
   },
   {
-    "fecha": "2023-12-03",
+    "fecha": "2023-10-16",
+    "clientes": 15
+  },
+  {
+    "fecha": "2023-10-17",
+    "clientes": 5
+  },
+  {
+    "fecha": "2023-10-18",
+    "clientes": 39
+  },
+  {
+    "fecha": "2023-10-19",
+    "clientes": 96
+  },
+  {
+    "fecha": "2023-10-20",
+    "clientes": 86
+  },
+  {
+    "fecha": "2023-10-21",
+    "clientes": 36
+  },
+  {
+    "fecha": "2023-10-22",
+    "clientes": 67
+  },
+  {
+    "fecha": "2023-10-23",
+    "clientes": 99
+  },
+  {
+    "fecha": "2023-10-24",
+    "clientes": 21
+  },
+  {
+    "fecha": "2023-10-25",
+    "clientes": 30
+  },
+  {
+    "fecha": "2023-10-26",
+    "clientes": 59
+  },
+  {
+    "fecha": "2023-10-27",
+    "clientes": 11
+  },
+  {
+    "fecha": "2023-10-28",
+    "clientes": 54
+  },
+  {
+    "fecha": "2023-10-29",
+    "clientes": 70
+  },
+  {
+    "fecha": "2023-10-30",
+    "clientes": 2
+  },
+  {
+    "fecha": "2023-10-31",
+    "clientes": 22
+  },
+  {
+    "fecha": "2023-11-01",
+    "clientes": 5
+  },
+  {
+    "fecha": "2023-11-02",
+    "clientes": 7
+  },
+  {
+    "fecha": "2023-11-03",
+    "clientes": 99
+  },
+  {
+    "fecha": "2023-11-04",
+    "clientes": 60
+  },
+  {
+    "fecha": "2023-11-05",
+    "clientes": 63
+  },
+  {
+    "fecha": "2023-11-06",
+    "clientes": 84
+  },
+  {
+    "fecha": "2023-11-07",
+    "clientes": 31
+  },
+  {
+    "fecha": "2023-11-08",
+    "clientes": 89
+  },
+  {
+    "fecha": "2023-11-09",
+    "clientes": 79
+  },
+  {
+    "fecha": "2023-11-10",
+    "clientes": 100
+  },
+  {
+    "fecha": "2023-11-11",
+    "clientes": 17
+  },
+  {
+    "fecha": "2023-11-12",
+    "clientes": 44
+  },
+  {
+    "fecha": "2023-11-13",
+    "clientes": 22
+  },
+  {
+    "fecha": "2023-11-14",
+    "clientes": 72
+  },
+  {
+    "fecha": "2023-11-15",
+    "clientes": 49
+  },
+  {
+    "fecha": "2023-11-16",
+    "clientes": 13
+  },
+  {
+    "fecha": "2023-11-17",
+    "clientes": 67
+  },
+  {
+    "fecha": "2023-11-18",
+    "clientes": 91
+  },
+  {
+    "fecha": "2023-11-19",
+    "clientes": 64
+  },
+  {
+    "fecha": "2023-11-20",
+    "clientes": 8
+  },
+  {
+    "fecha": "2023-11-21",
+    "clientes": 79
+  },
+  {
+    "fecha": "2023-11-22",
+    "clientes": 12
+  },
+  {
+    "fecha": "2023-11-23",
+    "clientes": 52
+  },
+  {
+    "fecha": "2023-11-24",
     "clientes": 57
   },
   {
+    "fecha": "2023-11-25",
+    "clientes": 37
+  },
+  {
+    "fecha": "2023-11-26",
+    "clientes": 22
+  },
+  {
+    "fecha": "2023-11-27",
+    "clientes": 3
+  },
+  {
+    "fecha": "2023-11-28",
+    "clientes": 70
+  },
+  {
+    "fecha": "2023-11-29",
+    "clientes": 93
+  },
+  {
+    "fecha": "2023-11-30",
+    "clientes": 44
+  },
+  {
+    "fecha": "2023-12-01",
+    "clientes": 2
+  },
+  {
+    "fecha": "2023-12-02",
+    "clientes": 97
+  },
+  {
+    "fecha": "2023-12-03",
+    "clientes": 7
+  },
+  {
     "fecha": "2023-12-04",
-    "clientes": 56
+    "clientes": 86
   },
   {
     "fecha": "2023-12-05",
-    "clientes": 37
+    "clientes": 30
   },
   {
     "fecha": "2023-12-06",
-    "clientes": 45
+    "clientes": 56
   },
   {
     "fecha": "2023-12-07",
-    "clientes": 46
+    "clientes": 25
   },
   {
     "fecha": "2023-12-08",
-    "clientes": 42
+    "clientes": 35
   },
   {
     "fecha": "2023-12-09",
-    "clientes": 37
+    "clientes": 38
   },
   {
     "fecha": "2023-12-10",
-    "clientes": 56
+    "clientes": 48
   },
   {
     "fecha": "2023-12-11",
-    "clientes": 55
+    "clientes": 4
   },
   {
     "fecha": "2023-12-12",
-    "clientes": 37
+    "clientes": 58
   },
   {
     "fecha": "2023-12-13",
-    "clientes": 44
+    "clientes": 3
   },
   {
     "fecha": "2023-12-14",
-    "clientes": 46
+    "clientes": 26
   },
   {
     "fecha": "2023-12-15",
-    "clientes": 41
+    "clientes": 35
   },
   {
     "fecha": "2023-12-16",
-    "clientes": 36
+    "clientes": 17
   },
   {
     "fecha": "2023-12-17",
-    "clientes": 56
+    "clientes": 36
   },
   {
     "fecha": "2023-12-18",
-    "clientes": 55
+    "clientes": 32
   },
   {
     "fecha": "2023-12-19",
-    "clientes": 36
-  },
-  {
-    "fecha": "2023-12-20",
     "clientes": 44
   },
   {
+    "fecha": "2023-12-20",
+    "clientes": 39
+  },
+  {
     "fecha": "2023-12-21",
-    "clientes": 45
+    "clientes": 39
   },
   {
     "fecha": "2023-12-22",
-    "clientes": 41
+    "clientes": 50
   },
   {
     "fecha": "2023-12-23",
-    "clientes": 36
+    "clientes": 41
   },
   {
     "fecha": "2023-12-24",
-    "clientes": 55
+    "clientes": 35
   },
   {
     "fecha": "2023-12-25",
-    "clientes": 55
+    "clientes": 32
   },
   {
     "fecha": "2023-12-26",
-    "clientes": 36
+    "clientes": 43
+  },
+  {
+    "fecha": "2023-12-27",
+    "clientes": 38
+  },
+  {
+    "fecha": "2023-12-28",
+    "clientes": 38
+  },
+  {
+    "fecha": "2023-12-29",
+    "clientes": 49
+  },
+  {
+    "fecha": "2023-12-30",
+    "clientes": 41
+  },
+  {
+    "fecha": "2023-12-31",
+    "clientes": 35
+  },
+  {
+    "fecha": "2024-01-01",
+    "clientes": 31
+  },
+  {
+    "fecha": "2024-01-02",
+    "clientes": 42
+  },
+  {
+    "fecha": "2024-01-03",
+    "clientes": 38
+  },
+  {
+    "fecha": "2024-01-04",
+    "clientes": 37
+  },
+  {
+    "fecha": "2024-01-05",
+    "clientes": 48
+  },
+  {
+    "fecha": "2024-01-06",
+    "clientes": 40
+  },
+  {
+    "fecha": "2024-01-07",
+    "clientes": 34
+  },
+  {
+    "fecha": "2024-01-08",
+    "clientes": 30
+  },
+  {
+    "fecha": "2024-01-09",
+    "clientes": 42
+  },
+  {
+    "fecha": "2024-01-10",
+    "clientes": 37
+  },
+  {
+    "fecha": "2024-01-11",
+    "clientes": 37
+  },
+  {
+    "fecha": "2024-01-12",
+    "clientes": 48
+  },
+  {
+    "fecha": "2024-01-13",
+    "clientes": 39
+  },
+  {
+    "fecha": "2024-01-14",
+    "clientes": 33
+  },
+  {
+    "fecha": "2024-01-15",
+    "clientes": 30
   }
 ]
